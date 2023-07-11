@@ -9,6 +9,7 @@ import { setFilter } from 'redux/filtersSlice/filtersSlice';
 import { getContact, getError, getFilters, getLoading } from 'redux/selectors';
 import { fetchContacts } from 'helpers/operations';
 import { useEffect } from 'react';
+import { ContactsText } from './contactList/contactList.styled';
 
 const App = () => {
   const contacts = useSelector(getContact);
@@ -33,7 +34,7 @@ const App = () => {
       <ContactForm />
       <FormHeader>Contacts</FormHeader>
       <Filter value={filtered} onFilter={onFilter} />
-      {isLoading && <p>Loading contacts...</p>}
+      {isLoading && <ContactsText>Loading contacts...</ContactsText>}
       {error && <p>{error}</p>}
       {contacts && <ContactList />}
     </MainContainer>

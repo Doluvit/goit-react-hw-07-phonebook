@@ -7,11 +7,12 @@ import {
   ContactsBtn,
 } from './contactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { getContact, getFilters } from 'redux/selectors';
+import { getContact, getFilters, getLoading } from 'redux/selectors';
 
 export const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(getContact);
+  const isLoading = useSelector(getLoading);
    const filtered = useSelector(getFilters);
 
    const filteredContacts = contacts.filter(contact =>
@@ -24,7 +25,7 @@ export const ContactList = () => {
 
   return (
     <ContactsContainer>
-      <ContactsList>
+     {!isLoading && <ContactsList>
         {filteredContacts.length > 0 ? (
           filteredContacts.map(({ id, name, number }) => (
             <ContactsItem key={id}>
@@ -42,7 +43,7 @@ export const ContactList = () => {
         ) : (
           <ContactsText>No contacts found.</ContactsText>
         )}
-      </ContactsList>
+      </ContactsList>}
     </ContactsContainer>
   );
 };
