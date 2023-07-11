@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Formik } from 'formik';
 import * as yup from 'yup';
 import {
@@ -9,7 +8,10 @@ import {
   ErrorMsg,
   FormButton,
 } from './contactForm.styled.js';
-import { nanoid } from 'nanoid';
+import { useDispatch, useSelector } from 'react-redux';
+import { getContact } from 'redux/selectors.js';
+import { addContacts } from 'helpers/operations.js';
+import { toast } from 'react-toastify';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -22,12 +24,21 @@ const inValues = {
   number: '',
 };
 
-export const ContactForm = ({ onSubmit }) => {
+export const ContactForm = () => {
 
-  
+  const dispatch = useDispatch();
+  const contacts = useSelector(getContact)
+
+
+  const onSubmit = newContact => {
+    if (contacts.find(contact => contact.name === newContact.name)) {
+      toast.error(`${newContact.name} is already in contacts.`);
+    } else {
+      dispatch(addContacts(newContact));
+    }
+  };
   const handleSubmit = (values, { resetForm }) => {
     const newContact = {
-      id: nanoid(),
       name: values.name,
       number: values.number,
     };
@@ -73,6 +84,3 @@ export const ContactForm = ({ onSubmit }) => {
   );
 };
 
-ContactForm.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-};
