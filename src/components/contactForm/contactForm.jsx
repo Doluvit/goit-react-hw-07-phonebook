@@ -60,8 +60,8 @@ export const ContactForm = ({ onSubmit }) => {
               name="number"
               type="tel"
               id="number"
-              pattern="^\d{3}-\d{2}-\d{2}$"
-              placeholder="Example: 777-77-77"
+              pattern="^\d{3}-\d{3}-\d{4}$"
+              placeholder="Example: 777-777-7777"
             />
             <ErrorMsg name="number" component="div" />
           </Section>

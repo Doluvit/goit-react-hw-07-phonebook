@@ -8,10 +8,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addContact } from 'redux/contactsSlice/contactsSlice';
 import { setFilter } from 'redux/filtersSlice/filtersSlice';
 import { getContact, getFilters } from 'redux/selectors';
+import getContacts from 'helpers/helpers';
 
 const App = () => {
   const contacts = useSelector(getContact);
-  const filtered = useSelector(getFilters);
+   const filtered = useSelector(getFilters);
   const dispatch = useDispatch();
 
   const handleSubmit = newContact => {
@@ -46,3 +47,6 @@ const App = () => {
 };
 
 export default App;
+
+
+getContacts();
