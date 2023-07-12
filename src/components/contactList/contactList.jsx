@@ -23,7 +23,7 @@ export const ContactList = () => {
     dispatch(deleteContacts(id));
   };
 
- 
+
   return (
     <ContactsContainer>
       {!isLoading && (

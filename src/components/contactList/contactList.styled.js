@@ -5,7 +5,7 @@ export const ContactsContainer = styled.div`
 `;
 
 export const ContactsList = styled.ul`
-  padding: 20px;
+  padding: 20px 20px 10px 20px;
   margin: 0;
   width: 380px;
   border: solid 2px transparent;
@@ -13,10 +13,6 @@ export const ContactsList = styled.ul`
   box-shadow: var(--mainBoxShadow);
   list-style: inside;
   background-color: #daecf0;
-
-  :not(:last-child) {
-    margin-bottom: 10px;
-  }
 `;
 
 export const ContactsItem = styled.li`
@@ -24,17 +20,13 @@ export const ContactsItem = styled.li`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 10px;
 `;
 
 export const ContactsText = styled.p`
   margin: 0;
   font-size: large;
   font-weight: 500;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-
-  cursor: pointer;
   color: var(--textColor);
 `;
 
