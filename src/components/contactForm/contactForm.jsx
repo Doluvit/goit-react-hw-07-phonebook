@@ -1,5 +1,9 @@
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { Formik } from 'formik';
 import * as yup from 'yup';
+import { selectContact } from 'redux/selectors.js';
+import { addContacts } from 'helpers/operations.js';
 import {
   Container,
   Input,
@@ -8,10 +12,6 @@ import {
   ErrorMsg,
   FormButton,
 } from './contactForm.styled.js';
-import { useDispatch, useSelector } from 'react-redux';
-import { getContact } from 'redux/selectors.js';
-import { addContacts } from 'helpers/operations.js';
-import { toast } from 'react-toastify';
 
 const schema = yup.object().shape({
   name: yup.string().required(),
@@ -26,7 +26,7 @@ const inValues = {
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
-  const contacts = useSelector(getContact);
+  const contacts = useSelector(selectContact);
 
   const onSubmit = newContact => {
     if (contacts.find(contact => contact.name === newContact.name)) {

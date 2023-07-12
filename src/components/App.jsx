@@ -1,31 +1,27 @@
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import { fetchContacts } from 'helpers/operations';
+
+import { selectContact, selectError, selectLoading } from 'redux/selectors';
+
 import { ContactForm } from './contactForm/contactForm';
 import { ContactList } from './contactList/contactList';
 import { Filter } from './filter/filter';
-import { FormHeader, MainContainer } from './App.styled';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { setFilter } from 'redux/filtersSlice/filtersSlice';
-import { getContact, getError, getFilters, getLoading } from 'redux/selectors';
-import { fetchContacts } from 'helpers/operations';
-import { useEffect } from 'react';
 import { ContactsText } from './contactList/contactList.styled';
+import { FormHeader, MainContainer } from './App.styled';
 
 const App = () => {
-  const contacts = useSelector(getContact);
-  const isLoading = useSelector(getLoading);
-  const error = useSelector(getError);
-  const filtered = useSelector(getFilters);
+  const contacts = useSelector(selectContact);
+  const isLoading = useSelector(selectLoading);
+  const error = useSelector(selectError);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
-
-  const onFilter = event => {
-    const { value } = event.currentTarget;
-    dispatch(setFilter(value));
-  };
 
   return (
     <MainContainer>
@@ -33,7 +29,7 @@ const App = () => {
       <FormHeader>Phonebook</FormHeader>
       <ContactForm />
       <FormHeader>Contacts</FormHeader>
-      <Filter value={filtered} onFilter={onFilter} />
+      <Filter />
       {isLoading && <ContactsText>Loading contacts...</ContactsText>}
       {error && <p>{error}</p>}
       {contacts && <ContactList />}

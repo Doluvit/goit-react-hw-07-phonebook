@@ -1,7 +1,19 @@
 import PropTypes from 'prop-types';
 import { FilterContainer, FilterInput, FilterLabel } from './filter.styled';
+import { setFilter } from 'redux/filtersSlice/filtersSlice';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
 
-export const Filter = ({ value, onFilter }) => {
+export const Filter = () => {
+  const dispatch = useDispatch();
+  const [value, setValue] = useState('')
+
+const onFilter = event => {
+  const { value } = event.currentTarget;
+  setValue(value);
+  dispatch(setFilter(value));
+};
+
   return (
     <FilterContainer>
       <FilterLabel htmlFor="filter">Find contacts by name</FilterLabel>
