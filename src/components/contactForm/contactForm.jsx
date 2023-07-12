@@ -75,7 +75,6 @@ export const ContactForm = () => {
             />
             <ErrorMsg name="number" component="div" />
           </Section>
-
           <FormButton type="submit">Add contact</FormButton>
         </Container>
       </Formik>
