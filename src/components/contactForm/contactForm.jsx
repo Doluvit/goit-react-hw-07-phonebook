@@ -25,10 +25,8 @@ const inValues = {
 };
 
 export const ContactForm = () => {
-
   const dispatch = useDispatch();
-  const contacts = useSelector(getContact)
-
+  const contacts = useSelector(getContact);
 
   const onSubmit = newContact => {
     if (contacts.find(contact => contact.name === newContact.name)) {
@@ -60,6 +58,7 @@ export const ContactForm = () => {
               name="name"
               type="text"
               id="name"
+              maxLength={14}
               placeholder="Example: John Snow"
             />
             <ErrorMsg name="name" component="div" />
@@ -83,4 +82,3 @@ export const ContactForm = () => {
     </>
   );
 };
-

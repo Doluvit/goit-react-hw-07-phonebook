@@ -4,10 +4,11 @@ import styled from 'styled-components';
 export const Container = styled(Form)`
   margin-bottom: 20px;
   padding: 20px;
-  max-width: 50%;
+  width: 360px;
   border: solid 2px transparent;
   border-radius: 5px;
   box-shadow: var(--mainBoxShadow);
+  background-color: #daecf0;
 `;
 
 export const Section = styled.div`

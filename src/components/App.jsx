@@ -13,16 +13,16 @@ import { ContactsText } from './contactList/contactList.styled';
 
 const App = () => {
   const contacts = useSelector(getContact);
-   const isLoading = useSelector(getLoading);
+  const isLoading = useSelector(getLoading);
   const error = useSelector(getError);
-   const filtered = useSelector(getFilters);
+  const filtered = useSelector(getFilters);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(fetchContacts());
   }, [dispatch]);
 
-    const onFilter = event => {
+  const onFilter = event => {
     const { value } = event.currentTarget;
     dispatch(setFilter(value));
   };

@@ -8,42 +8,52 @@ import {
 } from './contactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContact, getFilters, getLoading } from 'redux/selectors';
+import { useState } from 'react';
 
 export const ContactList = () => {
+  const [isFullTextVisible, setFullTextVisible] = useState(false);
   const dispatch = useDispatch();
   const contacts = useSelector(getContact);
   const isLoading = useSelector(getLoading);
-   const filtered = useSelector(getFilters);
+  const filtered = useSelector(getFilters);
 
-   const filteredContacts = contacts.filter(contact =>
-     contact.name.toLowerCase().includes(filtered.toLowerCase())
-   );
+  const filteredContacts = contacts.filter(contact =>
+    contact.name.toLowerCase().includes(filtered.toLowerCase())
+  );
 
-  const handleDelete = (id) => {
-    dispatch(deleteContacts(id))
-  }
+  const handleDelete = id => {
+    dispatch(deleteContacts(id));
+  };
+
+  const showFullText = () => {
+    setFullTextVisible(true);
+  };
 
   return (
     <ContactsContainer>
-     {!isLoading && <ContactsList>
-        {filteredContacts.length > 0 ? (
-          filteredContacts.map(({ id, name, number }) => (
-            <ContactsItem key={id}>
-              <ContactsText>{name}: </ContactsText>
-              <ContactsText>{number}</ContactsText>
-              <ContactsBtn
-                type="button"
-                id={id}
-                onClick={() => handleDelete(id)}
-              >
-                Delete
-              </ContactsBtn>
-            </ContactsItem>
-          ))
-        ) : (
-          <ContactsText>No contacts found.</ContactsText>
-        )}
-      </ContactsList>}
+      {!isLoading && (
+        <ContactsList>
+          {filteredContacts.length > 0 ? (
+            filteredContacts.map(({ id, name, number }) => (
+              <ContactsItem key={id}>
+                <ContactsText>
+                  {name}:{' '}
+                </ContactsText>
+                <ContactsText>{number}</ContactsText>
+                <ContactsBtn
+                  type="button"
+                  id={id}
+                  onClick={() => handleDelete(id)}
+                >
+                  Delete
+                </ContactsBtn>
+              </ContactsItem>
+            ))
+          ) : (
+            <ContactsText>No contacts found.</ContactsText>
+          )}
+        </ContactsList>
+      )}
     </ContactsContainer>
   );
 };

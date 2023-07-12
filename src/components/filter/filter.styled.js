@@ -18,11 +18,10 @@ export const FilterLabel = styled.label`
 
 export const FilterInput = styled.input`
   padding: 5px 10px;
-
+  background-color: #daecf0;
   font-size: 24px;
   color: var(--textColor);
 
-  background-color: transparent;
   border: 2px solid transparent;
   border-radius: 5px;
   box-shadow: var(--insetBoxShadow);

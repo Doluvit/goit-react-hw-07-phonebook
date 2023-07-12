@@ -1,16 +1,13 @@
-import styled from "styled-components";
-
-
-
-
-
-
+import styled from 'styled-components';
 
 export const MainContainer = styled.div`
- padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
 `;
 
 export const FormHeader = styled.h2`
-font-size: 40px;
-color: var(--textColor);
-`
+  font-size: 30px;
+  color: var(--textColor);
+`;

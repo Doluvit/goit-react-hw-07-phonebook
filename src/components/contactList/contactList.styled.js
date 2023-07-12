@@ -1,27 +1,42 @@
-import styled from "styled-components";
-
+import styled from 'styled-components';
 
 export const ContactsContainer = styled.div`
-`
+  margin-top: 20px;
+`;
 
 export const ContactsList = styled.ul`
-  padding: 0;
+  padding: 20px;
+  margin: 0;
+  width: 380px;
+  border: solid 2px transparent;
+  border-radius: 5px;
+  box-shadow: var(--mainBoxShadow);
   list-style: inside;
- `;
+  background-color: #daecf0;
+
+  :not(:last-child) {
+    margin-bottom: 10px;
+  }
+`;
 
 export const ContactsItem = styled.li`
   display: flex;
   flex-direction: row;
-  margin-bottom: 10px;
-  
-  `
+  justify-content: space-between;
+  align-items: center;
+`;
 
-export const ContactsText = styled.span`
-margin-right: 10px;
-font-size: large;
-font-weight: 500;
-color: var(--textColor);
-`
+export const ContactsText = styled.p`
+  margin: 0;
+  font-size: large;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+
+  cursor: pointer;
+  color: var(--textColor);
+`;
 
 export const ContactsBtn = styled.button`
   font-size: 14px;
@@ -41,4 +56,4 @@ export const ContactsBtn = styled.button`
     color: var(--accentTextColor);
     background-color: var(--mainBackgroundColor);
   }
-  `;
+`;
