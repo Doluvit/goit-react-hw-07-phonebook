@@ -8,10 +8,8 @@ import {
 } from './contactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { getContact, getFilters, getLoading } from 'redux/selectors';
-import { useState } from 'react';
 
 export const ContactList = () => {
-  const [isFullTextVisible, setFullTextVisible] = useState(false);
   const dispatch = useDispatch();
   const contacts = useSelector(getContact);
   const isLoading = useSelector(getLoading);
@@ -25,10 +23,7 @@ export const ContactList = () => {
     dispatch(deleteContacts(id));
   };
 
-  const showFullText = () => {
-    setFullTextVisible(true);
-  };
-
+ 
   return (
     <ContactsContainer>
       {!isLoading && (
